@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM | Jabardast Music</title>
+    <!-- <link rel="preconnect" href="https://www.youtube.com">
+   <link rel="preconnect" href="https://s.ytimg.com"> -->
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+    <section class="hero-section player-card" id="player" aria-labelledby="now-playing">
+        <header class="site-header">
+            <a class="brand" href="#player" aria-label="Jabardast Music home">
+                <span class="brand-mark" aria-hidden="true">JM</span>
+                <span>Jabardast <strong>Music</strong></span>
+            </a>
+            <nav aria-label="Main navigation">
+                <a class="nav-link nav-link-active" href="#player">Player</a>
+                <a class="nav-link" href="#playlist">Collection</a>
+            </nav>
+        </header>
+
+        <main class="hero-main">
+            <div class="hero-copy">
+                <div class="player-header">
+                    <span class="live-dot" aria-hidden="true"></span>
+                    <span id="station-label">A familiar favorite</span>
+                </div>
+
+                <p class="hero-kicker">Songs that bring the memories back</p>
+                <h1 id="now-playing"><strong id="current-song">Back to the songs we love</strong></h1>
+                <p class="hero-description">The songs you remember, ready to hear again.</p>
+                <a class="hero-link" href="#playlist">
+                    Explore the songs <span aria-hidden="true">↓</span>
+                </a>
+            </div>
+
+            <div class="visual-canvas" aria-hidden="true">
+                <div class="visual-glow"></div>
+                <div class="vinyl-record">
+                    <div class="vinyl-label"><span>JM</span><span>Jabardast Music</span></div>
+                </div>
+                <div class="visual-caption">
+                    <span>GOOD MUSIC</span>
+                    <span>GOOD MEMORIES</span>
+                </div>
+                <div class="sound-bars">
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+                <iframe id="main-player" width="336" height="189"
+                    src="https://www.youtube.com/embed/SBfPs-PMGTA?enablejsapi=1"
+                    title="YouTube music player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            </div>
+        </main>
+
+        <div class="hero-bottom">
+            <div class="track-strip">
+                <span class="track-strip-mark" aria-hidden="true">♫</span>
+                <div>
+                    <span class="track-strip-label">Now playing</span>
+                    <span id="track-strip-title" class="track-strip-station">Track details unavailable</span>
+                </div>
+                <div id="track-strip-metadata" class="track-strip-note" aria-label="Track metadata">
+                    <span id="track-strip-artist" class="track-metadata-artist">Artist unavailable</span>
+                    <span id="track-strip-album" class="track-metadata-album">Album unavailable</span>
+                    <span id="track-strip-year" class="track-metadata-year">Year unavailable</span>
+                </div>
+            </div>
+
+            <div class="controls-group" aria-label="Playback controls">
+                <span class="controls-caption">Playback</span>
+                <div class="controls-buttons">
+                    <button id="playback-toggle" class="control-button control-play" type="button"
+                        aria-label="Play" onclick="togglePlayback()">
+                        <span id="playback-icon" aria-hidden="true">&#9654;</span>
+                        <span id="playback-label">Play</span>
+                    </button>
+                    <!-- <button id="change-song" class="control-button control-change" type="button"
+                        aria-label="Change song" onclick="changeSong()">
+                        <span id="change-song-icon" aria-hidden="true">&#9197;</span>
+                        <span id="change-song-label">Change Song</span>
+                    </button> -->
+                </div>
+                <div class="playback-timeline">
+                    <span id="playback-current-time" class="playback-time">0:00</span>
+                    <div id="playback-progress" class="playback-progress" role="progressbar"
+                        aria-label="Playback progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                        aria-valuetext="Playback time 0:00; duration unavailable">
+                        <span id="playback-progress-fill" class="playback-progress-fill"></span>
+                    </div>
+                    <span id="playback-duration" class="playback-time">--:--</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="playlist-section" id="playlist" aria-labelledby="playlist-heading">
+        <div class="playlist-inner">
+            <a class="back-link" href="#player"><span aria-hidden="true">←</span> Return to the music</a>
+            <div class="playlist-heading">
+                <h2 id="playlist-heading">The Song Collection</h2>
+                <p>Choose a song. Let the memories return.</p>
+            </div>
+
+            <div class="playlist-toolbar">
+                <div>
+                    <span class="playlist-station-dot" aria-hidden="true"></span>
+                    <span class="playlist-station">The Collection</span>
+                </div>
+                <span class="playlist-hint">Choose a song to relive the moment</span>
+            </div>
+            <div class="playlist-frame">
+                <ul id="songs-list" aria-label="Songs"></ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark" aria-hidden="true">JM</span>
+                <div>
+                    <strong>Jabardast Music</strong>
+                    <p>Some songs never grow old.</p>
+                </div>
+            </div>
+            <div class="footer-about">
+                <h2>About the collection</h2>
+                <p>A place to revisit old favorites and familiar melodies.</p>
+            </div>
+            <nav class="footer-navigation" aria-label="Footer navigation">
+                <h2>Explore</h2>
+                <a href="#player">Return to the music</a>
+                <a href="#playlist">The Song Collection</a>
+            </nav>
+            <div class="footer-bottom">
+                <span>Jabardast Music</span>
+                <a class="footer-top-link" href="#player">Back to top <span aria-hidden="true">↑</span></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="songs.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
