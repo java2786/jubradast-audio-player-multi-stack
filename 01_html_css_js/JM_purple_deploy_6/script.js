@@ -397,10 +397,7 @@ function playSong(id, title, index) {
         pendingSongId = id;
         const iframe = document.getElementById("main-player");
         if (iframe) {
-            const originParam = (window.location.origin && window.location.origin.startsWith("http"))
-                ? `&origin=${encodeURIComponent(window.location.origin)}`
-                : "";
-            iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(id)}?autoplay=1&enablejsapi=1${originParam}`;
+            iframe.src = `https://www.youtube.com/embed/${encodeURIComponent(id)}?autoplay=1&enablejsapi=1`;
         }
         stopPlaybackUpdates();
         playbackInterval = window.setInterval(updatePlaybackTimeline, 500);

@@ -1,0 +1,23 @@
+name: Deploy Nested Folder to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# Permissions zaroori hain taaki action branch par push kar sake
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: 01_html_css_js/JM_purple_deploy_6 # Aapka specific nested folder
+          branch: gh-pages                          # Deployment ke liye alag branch
