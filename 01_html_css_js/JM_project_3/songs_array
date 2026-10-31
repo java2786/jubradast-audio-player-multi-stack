@@ -1,0 +1,47 @@
+
+        const songs = [
+            {
+                "id": "SBfPs-PMGTA",
+                "title": "Pehla Nasha, Pehla Khumaar"
+            },
+            {
+                "id": "2AuyN_rLQ7Q",
+                "title": "Pehle Bhi Main - Animal"
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "hcCvSmjHwGY",
+                "title": "Jab bhi main koi..."
+            }, 
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "O4QUyBtdpk4",
+                "title": "Kesariya - Brahmāstra"
+            },
+            {
+                "id": "Yqj1_V90KJo",
+                "title": "Chura Ke Dil Mera...."
+            }, 
+            {
+                "id": "lwv_0SEJ4NQ",
+                "title": "Pehle Bhi Main - Animal"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "Xsn0QjMN3fM",
+                "title": "Gulabi Aankhen Jo Teri Dekhi"
+            } 
+        ];

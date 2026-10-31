@@ -1,0 +1,293 @@
+/* --- CSS Reset & Variables --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* :root {
+    --primary: #059669;
+    --primary-hover: #047857;
+    --bg-color: #f0fdf4;
+    --card-bg: #ffffff;
+    --text-color: #1c1917;
+    --text-muted: #78716c;
+    --border-color: #dcfce7;
+    --radius: 20px;
+
+    --primary-light: color-mix(in srgb, var(--primary) 10%, var(--card-bg));
+    --primary-border: color-mix(in srgb, var(--primary) 25%, var(--border-color));
+    --secondary-btn-bg: color-mix(in srgb, var(--text-color) 4%, var(--bg-color));
+    --secondary-btn-hover: color-mix(in srgb, var(--text-color) 10%, var(--bg-color));
+    --scrollbar-thumb: color-mix(in srgb, var(--text-muted) 30%, var(--border-color));
+} */
+
+
+
+/* --- Base Styles --- */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    line-height: 1.6;
+}
+
+/* --- Header --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2.5rem;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px -2px color-mix(in srgb, var(--primary) 5%, transparent);
+}
+
+header h1 {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 60%, #fb923c) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+nav a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+nav a:hover, nav a strong {
+    color: var(--primary);
+}
+
+nav a strong {
+    background: var(--primary-light);
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    border-bottom: none;
+}
+
+/* --- Main Layout & Player Card --- */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 1rem;
+}
+
+.player-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 2.25rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px -15px color-mix(in srgb, var(--text-color) 5%, transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Player Header & Status --- */
+.player-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--primary-light);
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-hover);
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--primary-border);
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 8px color-mix(in srgb, var(--primary) 60%, transparent);
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+#now-playing {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#current-song {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+/* --- Iframe Video Player --- */
+iframe {
+    width: 100%;
+    max-width: 420px;
+    height: 236px;
+    border: none;
+    border-radius: 12px;
+    margin: 0.5rem 0 1.5rem 0;
+    box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.08);
+}
+
+/* --- Controls --- */
+.controls-group {
+    display: flex;
+    gap: 0.85rem;
+    margin-bottom: 1.75rem;
+    width: 100%;
+    justify-content: center;
+}
+
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px color-mix(in srgb, var(--primary) 35%, transparent);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:nth-child(2) {
+    background-color: var(--secondary-btn-bg);
+    color: var(--text-color);
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+}
+
+button:nth-child(2):hover {
+    background-color: var(--secondary-btn-hover);
+    box-shadow: none;
+}
+
+/* --- Playlist Directory --- */
+.playlist-section {
+    width: 100%;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    text-align: left;
+}
+
+.playlist-section h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+#songs-list {
+    list-style: none;
+    max-height: 190px;
+    overflow-y: auto;
+    padding-right: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Custom scrollbar for playlist */
+#songs-list::-webkit-scrollbar {
+    width: 5px;
+}
+#songs-list::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 9999px;
+}
+
+#songs-list li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    background-color: var(--secondary-btn-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#songs-list li a:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-border);
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 1.25rem;
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* --- Responsive Media Query --- */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 0.85rem;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    nav {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    nav a {
+        margin-left: 0;
+    }
+
+    .player-card {
+        padding: 1.5rem;
+    }
+
+    iframe {
+        height: 200px;
+    }
+}

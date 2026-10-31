@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM | Jabardast Music</title>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body id="top">
+    <div class="app-shell">
+        <header class="site-header">
+            <a class="brand" href="#top" aria-label="Jabardast Music home">
+                <span class="brand-mark" aria-hidden="true">JM</span>
+                <span>Jabardast Music</span>
+            </a>
+            <nav aria-label="Page navigation">
+                <a class="back-link" href="#player"><span aria-hidden="true">&larr;</span> Back to player</a>
+            </nav>
+        </header>
+
+        <main class="page-content">
+            <section class="player-dock player-card" id="player" aria-label="Music player">
+                <div class="player-header">
+                    <span class="live-dot"></span>
+                    <span>Retro Station</span>
+                </div>
+                <h2 id="now-playing">Now playing: <strong id="current-song">Default track</strong></h2>
+                <iframe id="main-player" width="336" height="189"
+                    src="https://www.youtube.com/embed/TQkn1uv4AcM?autoplay=1&enablejsapi=1" allowfullscreen></iframe>
+                <div class="controls-group">
+                    <button onclick="playMusic('main-player')">&#9654; Play</button>
+                    <button onclick="pauseMusic('main-player')">&#9208; Stop</button>
+                    <!-- <button onclick="toggleElement('main-player')">Toggle</button> -->
+                </div>
+            </section>
+
+            <section class="hero" aria-labelledby="page-title">
+                <p class="eyebrow">Find your next favorite</p>
+                <h1 id="page-title">Playlist Directory</h1>
+                <p class="hero-subtitle">Pick a song and let the memories play.</p>
+            </section>
+
+            <section class="playlist-section player-card" aria-labelledby="station-label">
+                <div class="playlist-heading">
+                    <div class="player-header">
+                        <span class="live-dot"></span>
+                        <span id="station-label">Retro Station</span>
+                    </div>
+                    <p>Select a track to play</p>
+                </div>
+                <ul id="songs-list" aria-label="Songs"></ul>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <a class="footer-brand" href="#top">
+                <span class="brand-mark" aria-hidden="true">JM</span>
+                <span class="footer-copy">
+                    <strong>Jabardast Music</strong>
+                    <span>Built for Learners</span>
+                </span>
+            </a>
+            <a class="back-to-top" href="#top">Back to top <span aria-hidden="true">&uarr;</span></a>
+        </footer>
+    </div>
+
+    <script>
+        toggleElement('main-player')
+        function toggleElement(id) {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            if (el.style.position !== "absolute") {
+                el.style.opacity = 0;
+                el.style.position = "absolute"
+                el.style.pointerEvents = "none"
+                el.style.height = "0px";
+                el.style.width = "0px";
+            } else {
+                el.style.opacity = 1;
+                el.style.position = ""
+                el.style.pointerEvents = ""
+                el.style.width = "336px";
+                el.style.height = "189px";
+            }
+        }
+
+        function myAction(id, action) {
+            const iframe = document.getElementById(id);
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage(JSON.stringify({
+                    event: "command",
+                    func: action,
+                    args: []
+                }), "https://www.youtube.com");
+
+            }
+        }
+
+        function playMusic(id) {
+            myAction(id, "playVideo")
+        }
+        // function pauseMusic(id){
+        //     const iframe = document.getElementById(id);
+        //     if(iframe && iframe.contentWindow){
+        //         iframe.contentWindow.postMessage(JSON.stringify({
+        //             event: "command",
+        //             func: "pauseVideo",
+        //             args: []
+        //         }), "https://www.youtube.com");
+
+        //     }
+        // }
+        function pauseMusic(id) {
+            myAction(id, "pauseVideo")
+        }
+
+        // const songs = [
+        //     "TQkn1uv4AcM",
+        //     "t6y9n4qGY0k",
+        //     "SDEGhZt_frQ",
+        //     "gfD7eL8I6uU",
+        //     "TQkn1uv4AcM",
+        //     "t6y9n4qGY0k"
+        // ];
+
+        const songs = [
+            {
+                "id": "SBfPs-PMGTA",
+                "title": "Pehla Nasha, Pehla Khumaar"
+            },
+            {
+                "id": "2AuyN_rLQ7Q",
+                "title": "Pehle Bhi Main - Animal"
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "hcCvSmjHwGY",
+                "title": "Jab bhi main koi..."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "O4QUyBtdpk4",
+                "title": "Kesariya - Brahmāstra"
+            },
+            {
+                "id": "Yqj1_V90KJo",
+                "title": "Chura Ke Dil Mera...."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "hcCvSmjHwGY",
+                "title": "Jab bhi main koi..."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "O4QUyBtdpk4",
+                "title": "Kesariya - Brahmāstra"
+            },
+            {
+                "id": "Yqj1_V90KJo",
+                "title": "Chura Ke Dil Mera...."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "hcCvSmjHwGY",
+                "title": "Jab bhi main koi..."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "O4QUyBtdpk4",
+                "title": "Kesariya - Brahmāstra"
+            },
+            {
+                "id": "Yqj1_V90KJo",
+                "title": "Chura Ke Dil Mera...."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "hcCvSmjHwGY",
+                "title": "Jab bhi main koi..."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "O4QUyBtdpk4",
+                "title": "Kesariya - Brahmāstra"
+            },
+            {
+                "id": "Yqj1_V90KJo",
+                "title": "Chura Ke Dil Mera...."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "hcCvSmjHwGY",
+                "title": "Jab bhi main koi..."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "O4QUyBtdpk4",
+                "title": "Kesariya - Brahmāstra"
+            },
+            {
+                "id": "Yqj1_V90KJo",
+                "title": "Chura Ke Dil Mera...."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "hcCvSmjHwGY",
+                "title": "Jab bhi main koi..."
+            },
+            {
+                "id": "R4kmsTGw0q0",
+                "title": "Apna Bana Le - Bhediya"
+            },
+            {
+                "id": "O4QUyBtdpk4",
+                "title": "Kesariya - Brahmāstra"
+            },
+            {
+                "id": "Yqj1_V90KJo",
+                "title": "Chura Ke Dil Mera...."
+            },
+            {
+                "id": "lwv_0SEJ4NQ",
+                "title": "Pehle Bhi Main - Animal"
+            },
+            {
+                "id": "wr9M-CoxP7A",
+                "title": "Chaleya - Jawan"
+            },
+            {
+                "id": "Xsn0QjMN3fM",
+                "title": "Gulabi Aankhen Jo Teri Dekhi"
+            }
+        ];
+
+
+        function playSong(id, title) {
+            // find iframe - ???
+            const iframe = document.getElementById("main-player");
+            iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&enablejsapi=1`
+
+            playMusic('main-player');
+
+            document.getElementById('current-song').innerHTML = title;
+
+        }
+        const songsList = document.getElementById("songs-list");
+        // songsList.innerHTML = songs.map(function(id){
+        //     return "<li><a href='#'>"+id+"</a></li>"
+        // }).join();
+
+        songsList.innerHTML = songs.map(song =>
+            `<li>
+                <a href='#' onclick='playSong("${song.id}", "${song.title}")'>
+                    ${song.title}
+                </a>
+            </li>`
+        ).join("");
+
+    </script>
+</body>
+
+</html>

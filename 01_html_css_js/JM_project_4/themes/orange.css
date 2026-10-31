@@ -1,0 +1,17 @@
+:root {
+    --primary: #ea580c;
+    --primary-hover: #c2410c;
+    --bg-color: #fff7ed;
+    --card-bg: #ffffff;
+    --text-color: #292524;
+    --text-muted: #78716c;
+    --border-color: #ffedd5;
+    --radius: 20px;
+
+    /* Derived UI Theme Variables */
+    --primary-light: color-mix(in srgb, var(--primary) 10%, var(--card-bg));
+    --primary-border: color-mix(in srgb, var(--primary) 25%, var(--border-color));
+    --secondary-btn-bg: color-mix(in srgb, var(--text-color) 4%, var(--bg-color));
+    --secondary-btn-hover: color-mix(in srgb, var(--text-color) 10%, var(--bg-color));
+    --scrollbar-thumb: color-mix(in srgb, var(--text-muted) 30%, var(--border-color));
+}

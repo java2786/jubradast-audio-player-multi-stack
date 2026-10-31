@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JM | Jabardast Music</title>
+</head>
+<body>
+    <header>
+        <h1>JM | Jabardast Music</h1>
+        <nav>
+            <a href="#"><strong>Player</strong></a>
+            <a href="#">Songs list</a>
+            <a href="#">Add Song</a>
+        </nav>
+    </header>
+
+    <main>
+        <h3>Now playing: Default track</h3>
+        <p>Retro Station</p>
+
+
+            <iframe 
+            id="main-player"
+        width="336" 
+        height="189" 
+        src="https://www.youtube.com/embed/TQkn1uv4AcM?autoplay=1&enablejsapi=1" 
+        allowfullscreen></iframe>
+
+       <div>
+         <button onclick="playMusic('main-player')">Play</button>
+        <button onclick="pauseMusic('main-player')">Stop</button>
+        <button onclick="toggleElement('main-player')">Toggle</button>
+       </div>
+    </main>
+
+    <footer>
+        <p>Built for Learners</p>
+    </footer>
+
+    <script>
+        function toggleElement(id){
+            const el = document.getElementById(id);
+            if(!el) return;  
+            
+            if(el.style.position !== "absolute"){
+                el.style.opacity = 0;
+                el.style.position = "absolute"
+                el.style.pointerEvents = "none"
+                el.style.height = "0px";
+                el.style.width = "0px";   
+            } else {
+                el.style.opacity = 1;
+                el.style.position = ""
+                el.style.pointerEvents = ""
+                el.style.width = "336px";
+                el.style.height = "189px";   
+            }
+        }
+
+        function myAction(id, action){
+            const iframe = document.getElementById(id);
+            if(iframe && iframe.contentWindow){
+                iframe.contentWindow.postMessage(JSON.stringify({
+                    event: "command",
+                    func: action,
+                    args: []
+                }), "https://www.youtube.com");
+
+            }        }
+
+        function playMusic(id){
+            myAction(id, "playVideo")
+        }
+        // function pauseMusic(id){
+        //     const iframe = document.getElementById(id);
+        //     if(iframe && iframe.contentWindow){
+        //         iframe.contentWindow.postMessage(JSON.stringify({
+        //             event: "command",
+        //             func: "pauseVideo",
+        //             args: []
+        //         }), "https://www.youtube.com");
+
+        //     }
+        // }
+        function pauseMusic(id){
+            myAction(id, "pauseVideo")
+        }
+    </script>
+</body>
+</html>
